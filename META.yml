@@ -21,7 +21,7 @@ name: Geest
 provides:
   Geest:
     file: lib/Geest.pm
-    version: 0.01
+    version: 0.02
   Geest::Backend:
     file: lib/Geest/Backend.pm
     version: 0
@@ -39,4 +39,4 @@ requires:
 resources:
   license: http://opensource.org/licenses/artistic-license-2.0.php
   repository: git://github.com/lestrrat/p5-Geest.git
-version: 0.01
+version: 0.02

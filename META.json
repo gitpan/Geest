@@ -47,7 +47,7 @@
    "provides" : {
       "Geest" : {
          "file" : "lib/Geest.pm",
-         "version" : "0.01"
+         "version" : "0.02"
       },
       "Geest::Backend" : {
          "file" : "lib/Geest/Backend.pm",
@@ -63,5 +63,5 @@
          "url" : "git://github.com/lestrrat/p5-Geest.git"
       }
    },
-   "version" : "0.01"
+   "version" : "0.02"
 }

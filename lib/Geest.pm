@@ -10,7 +10,7 @@ use Log::Minimal;
 use Plack::Request;
 use Geest::Backend;
 use constant DEBUG => !!$ENV{GEEST_DEBUG};
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 BEGIN {
     $Log::Minimal::ENV_DEBUG = "GEEST_DEBUG";
     $Log::Minimal::PRINT = sub {
@@ -205,6 +205,7 @@ sub send_backend {
         $req->method,
         $req->uri,
         headers => \%headers,
+        recurse => 0,
         persistent => 0,
         tcp_connect => sub {
             # Override tcp_connect so we connect to the specified
@@ -370,10 +371,15 @@ responses:
         #    },
         #    ...
         # };
+        if (! $responses->{prod} && $responses->{dev}) {
+            return;
+        }
 
         my $data_prod = $responses->{prod}->{response}->decoded_content;
         my $data_dev  = $responses->{dev}->{response}->decoded_content;
         if ($data_prod ne $data_dev) {
+            # You probably want to check that both responses are
+            # content_type -> text/* before running diff()
             print STDERR diff(\$data_prod, $data_dev);
         }
     });
